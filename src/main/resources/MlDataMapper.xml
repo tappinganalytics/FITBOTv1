@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ta.bot.fit.persistence.mapper.MlDataMapper">
+
+    <!-- RESULT MAP -->
+    <resultMap id="MlDataDbDo" type="ta.bot.fit.persistence.dbdo.MlDataDbDo">
+        <result column="id" jdbcType="BIGINT" property="id" />
+        <result column="exerciseName" jdbcType="VARCHAR" property="exerciseName" />
+        <result column="gif" jdbcType="VARCHAR" property="gif" />
+    </resultMap>
+
+
+    <!-- RESULT MAP END -->
+
+
+
+    <!-- SQL -->
+    <select id="selectGifsByKeyword" resultMap="MlDataDbDo" flushCache="true">
+        SELECT * FROM ebdb.mlData AS ml WHERE ml.exerciseName LIKE #{keyword}
+    </select>
+
+</mapper>
