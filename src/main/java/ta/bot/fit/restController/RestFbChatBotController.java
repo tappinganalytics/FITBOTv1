@@ -161,9 +161,9 @@ public class RestFbChatBotController {
      * NLP Functions
      ****************************************************************/
 
-    private boolean saveNLPinMap(NLPItem item, String key, Map map)
+    private boolean saveNLPinMap(NLPItem item, String key, double lowConfidence, Map map)
     {
-        if (item.getValue().equals("true") && item.getConfidence() > 0.8)
+        if (item.getValue().equals("true") && item.getConfidence() > lowConfidence)
         {
             log.debug(key + " confidence " + item.getConfidence());
             map.put(key, item.getConfidence());
@@ -183,15 +183,15 @@ public class RestFbChatBotController {
                 map = new HashMap<String, Double>();
                 if (nlpentities != null) {
                     for (NLPItem greetings : nlpentities.getGreetings()) {
-                        if (saveNLPinMap(greetings, "greetings", map))
+                        if (saveNLPinMap(greetings, "greetings", 0.8, map))
                             break;
                     }
                     for (NLPItem bye : nlpentities.getBye()) {
-                        if (saveNLPinMap(bye, "bye", map))
+                        if (saveNLPinMap(bye, "bye", 0.7, map))
                             break;
                     }
                     for (NLPItem thanks : nlpentities.getThanks()) {
-                        if (saveNLPinMap(thanks, "thanks", map))
+                        if (saveNLPinMap(thanks, "thanks", 0.8, map))
                             break;
                     }
                     if (!map.isEmpty()) {
