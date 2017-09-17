@@ -200,7 +200,7 @@ public class RestFbChatBotController {
                             fbMsgSender.sendTextMessage(senderId, "Hello! I am FitBot.");
                             fbMsgSender.sendTextMessage(senderId, "What exercise would you like to do?");
                         } else if (maxKey.equals("thanks")) {
-                            fbMsgSender.sendTextMessage(senderId, "I'm glad to help! Is there anything else you would like to know?");
+                            fbMsgSender.sendTextMessage(senderId, "You are welcome. I'm glad to help!");
                         } else if (maxKey.equals("bye")) {
                             fbMsgSender.sendTextMessage(senderId, "Stay strong and keep training! See you next time!");
                         } else
