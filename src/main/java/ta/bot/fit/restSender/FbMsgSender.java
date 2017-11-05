@@ -136,7 +136,10 @@ public class FbMsgSender {
      */
     public void sendFitGifMessage(String recipientId, String msg) {
         MlDataDto mlData = mlDataService.getSingleRandomGifsByKeyword(msg);
-        if(mlData==null) sendTextMessage(recipientId, "Sorry, no data found!");
+        if (mlData==null) {
+            // remove default message since chatfuel will provide it
+            // sendTextMessage(recipientId, "Sorry, no data found!");
+        }
         else sendImageMessage(recipientId, mlData.getGif());
     }
 }
